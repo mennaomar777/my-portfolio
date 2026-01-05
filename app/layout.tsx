@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   title: "Menna Omar - Frontend Developer",
   description:
     "Portfolio of Menna Omar, Frontend Developer specializing in React, Next.js, and Tailwind CSS",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
