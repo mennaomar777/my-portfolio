@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Menna Omar Portfolio
 
-## Getting Started
+Welcome to my personal portfolio website! This project showcases my work as a **Frontend Developer**, highlighting my skills, projects, and experience in web development.
 
-First, run the development server:
+## 🌐 Live Demo
+
+You can check out the live version of my portfolio here: [Your Live Link](#)
+
+## 💻 Tech Stack
+
+The project is built using modern web technologies:
+
+- **Frontend:** React, Next.js, Tailwind CSS
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Images:** Next.js Image Optimization
+
+## 📝 Features
+
+- **About Me Section:** Includes my bio, skills, and education with smooth scroll animations.
+- **Projects Section:** Showcase of my personal and professional projects with live links and GitHub repositories.
+- **Contact Form:** Integrated with EmailJS for easy messaging.
+- **Dark/Light Mode:** Seamless theme switch using Tailwind CSS.
+- **Responsive Design:** Fully responsive layout for mobile, tablet, and desktop.
+
+## 🎨 Design
+
+- Modern, clean, and user-focused interface.
+- Animated transitions using Framer Motion for better UX.
+- Interactive skill cards and hover effects for a polished feel.
+
+## 📂 Folder Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+portfolio/
+├── public/ # Static assets (images, icons)
+├── app/ # Next.js pages and components
+│ ├── _components/ # Reusable components (Hero, About, Projects,Skills,  Contact, Navbar, Footer)
+│ └── page.jsx # Main page
+├── styles/ # Tailwind CSS & global styles
+├── package.json # Project dependencies
+└── README.md # Project overview
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run this project locally:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Clone the repository:
 
-## Learn More
+```bash
+git clone https://github.com/yourusername/portfolio.git
+```
 
-To learn more about Next.js, take a look at the following resources:
+2. Navigate to the project directory:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+   cd portfolio
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Install dependencies:
 
-## Deploy on Vercel
+```bash
+   npm install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Run the development server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+      npm run dev
+```
+
+5. Open http://localhost:3000 in your browser.
+
+## 📧 Contact
+
+- Email: [menna@example.com](mailto:menna@example.com)
+- LinkedIn: [Menna Omar](https://www.linkedin.com/in/menna-omar)
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+Thank you for visiting my portfolio! I hope you enjoy exploring my work. 🚀
+
+```
+
+```
