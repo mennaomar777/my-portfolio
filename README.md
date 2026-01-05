@@ -75,6 +75,6 @@ npm run dev
 ## 📧 Contact
 
 - Email: [mennaomar764@gmail.com](mailto:mennaomar764@gmail.com)
-- LinkedIn: [Menna Omar](https://www.linkedin.com/in/menna-omar)
+- LinkedIn: [Menna Omar](https://www.linkedin.com/in/mennaomar777/)
 
 Thank you for visiting my portfolio! I hope you enjoy exploring my work. 🚀
