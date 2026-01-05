@@ -4,7 +4,7 @@ Welcome to my personal portfolio website! This project showcases my work as a **
 
 ## 🌐 Live Demo
 
-You can check out the live version of my portfolio here: [Your Live Link](#)
+You can check out the live version of my portfolio here: [ Live Demo](https://my-portfolio-delta-rose-14.vercel.app/)
 
 ## 💻 Tech Stack
 
@@ -12,7 +12,7 @@ The project is built using modern web technologies:
 
 - **Frontend:** React, Next.js, Tailwind CSS
 - **Animations:** Framer Motion
-- **Icons:** Lucide React
+- **Icons:** Lucide React, React Icons
 - **Images:** Next.js Image Optimization
 
 ## 📝 Features
@@ -49,40 +49,32 @@ To run this project locally:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/portfolio.git
+git clone https://github.com/mennaomar777/my-portfolio
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-   cd portfolio
+cd portfolio
 ```
 
 3. Install dependencies:
 
 ```bash
-   npm install
+npm install
 ```
 
 4. Run the development server:
 
 ```bash
-      npm run dev
+npm run dev
 ```
 
 5. Open http://localhost:3000 in your browser.
 
 ## 📧 Contact
 
-- Email: [menna@example.com](mailto:menna@example.com)
+- Email: [mennaomar764@gmail.com](mailto:mennaomar764@gmail.com)
 - LinkedIn: [Menna Omar](https://www.linkedin.com/in/menna-omar)
 
-## 📜 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 Thank you for visiting my portfolio! I hope you enjoy exploring my work. 🚀
-
-```
-
-```
