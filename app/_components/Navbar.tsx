@@ -29,28 +29,38 @@ export default function Navbar() {
 
   useEffect(() => {
     const sections = ["hero", "about", "projects", "skills", "contact"];
-    const observers = sections.map((id) => {
+
+    let currentActive = "hero";
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let maxRatio = 0;
+        let bestSection = currentActive;
+
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+            maxRatio = entry.intersectionRatio;
+            bestSection = entry.target.id;
+          }
+        });
+
+        if (maxRatio > 0) {
+          setActiveSection(bestSection);
+          currentActive = bestSection;
+        }
+      },
+      {
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+        rootMargin: "-120px 0px -30% 0px",
+      }
+    );
+
+    sections.forEach((id) => {
       const element = document.getElementById(id);
-      if (!element) return null;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(id);
-            }
-          });
-        },
-        { threshold: 0.6 }
-      );
-
-      observer.observe(element);
-      return observer;
+      if (element) observer.observe(element);
     });
 
-    return () => {
-      observers.forEach((obs) => obs?.disconnect());
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
