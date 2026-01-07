@@ -1,11 +1,13 @@
 "use client";
+
+import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <footer className="py-8 px-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#111827] backdrop-blur-sm">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
         <div className="flex gap-6">
           <Link
             href="https://github.com/mennaomar777"
@@ -33,10 +35,45 @@ export default function Footer() {
           </Link>
         </div>
 
-        <div className="text-center md:text-right text-sm text-gray-600 dark:text-gray-400">
-          Menna Omar © {new Date().getFullYear()} • Built with{" "}
-          <span className="font-semibold">Next.js</span> &{" "}
-          <span className="font-semibold">Tailwind CSS</span> ❤️
+        <div className="text-sm text-gray-600 dark:text-gray-400">
+          {/* Mobile layout */}
+          <div className="flex flex-col items-center md:hidden">
+            <div className="flex items-center">
+              <Image
+                src="/favicon.png"
+                alt="MO Logo"
+                width={32}
+                height={32}
+                className="rounded-full object-cover shrink-0"
+              />
+              <span className="font-medium">
+                Menna Omar © {new Date().getFullYear()}
+              </span>
+            </div>
+
+            <div>
+              Built with <span className="font-semibold">Next.js</span> &{" "}
+              <span className="font-semibold">Tailwind CSS</span> ❤️
+            </div>
+          </div>
+
+          {/* Desktop layout */}
+          <div className="hidden md:flex items-center">
+            <Image
+              src="/favicon.png"
+              alt="MO Logo"
+              width={32}
+              height={32}
+              className="rounded-full object-cover shrink-0"
+            />
+            <span>
+              <span className="font-medium">
+                Menna Omar © {new Date().getFullYear()}
+              </span>{" "}
+              • Built with <span className="font-semibold">Next.js</span> &{" "}
+              <span className="font-semibold">Tailwind CSS</span> ❤️
+            </span>
+          </div>
         </div>
 
         <Link
