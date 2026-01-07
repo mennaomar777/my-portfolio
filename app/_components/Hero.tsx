@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiChevronDown, HiOutlineDownload } from "react-icons/hi";
+import { TypeAnimation } from "react-type-animation";
 
 export default function Hero() {
   return (
@@ -18,7 +19,7 @@ export default function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#A78BFA]/20 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
-      <div className="max-w-4xl w-full">
+      <div className="max-w-4xl w-full z-10">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -28,7 +29,7 @@ export default function Hero() {
           Hi, I&apos;m{" "}
           <span
             className="bg-gradient-to-r from-[#8B5CF6] via-[#A78BFA] to-[#C4B5FD] 
-          dark:from-[#A78BFA] dark:via-[#8B5CF6] dark:to-[#6D28D9] bg-clip-text text-transparent"
+            dark:from-[#A78BFA] dark:via-[#8B5CF6] dark:to-[#6D28D9] bg-clip-text text-transparent"
           >
             Menna Omar
           </span>
@@ -38,19 +39,25 @@ export default function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl md:text-3xl text-gray-700 dark:text-gray-300 leading-snug mt-4"
+          className="text-xl md:text-3xl text-gray-700 dark:text-gray-300 leading-snug mt-6"
         >
-          <span className="font-semibold">
-            <span className="text-[#8B5CF6] dark:text-[#A78BFA]">
-              Frontend Developer
-            </span>
-            <span className="mx-2 text-gray-600 dark:text-gray-400">|</span>
-            <span className="text-[#8B5CF6] dark:text-[#A78BFA]">
-              React & Next.js
-            </span>
-          </span>
-          <br />
-          Building clean & interactive web experiences
+          <TypeAnimation
+            sequence={[
+              "Frontend Developer",
+              1500,
+              "React & Next.js Developer",
+              1500,
+              "Building Clean UI Experiences",
+              1500,
+              "Crafting Interactive Web Apps",
+              1500,
+            ]}
+            wrapper="span"
+            speed={50}
+            deletionSpeed={70}
+            repeat={Infinity}
+            className="font-semibold text-[#8B5CF6] dark:text-[#A78BFA]"
+          />
         </motion.div>
 
         <motion.p
