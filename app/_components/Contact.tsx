@@ -1,14 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { Loader2, Send } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
 import {
-  HiOutlineLocationMarker,
-  HiOutlineMail,
-  HiOutlinePhone,
-} from "react-icons/hi";
+  Loader2,
+  Send,
+  Github,
+  Linkedin,
+  MapPin,
+  Mail,
+  Phone,
+  ArrowUpRight,
+} from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -19,7 +22,40 @@ interface ContactFormData {
   message: string;
 }
 
+const contactItems = [
+  {
+    label: "Email",
+    value: "mennaomar764@gmail.com",
+    href: "mailto:mennaomar764@gmail.com",
+    icon: Mail,
+  },
+  {
+    label: "Phone",
+    value: "+20 111 905 1584",
+    href: "tel:+201119051584",
+    icon: Phone,
+  },
+];
+
+const socials = [
+  {
+    label: "GitHub",
+    href: "https://github.com/mennaomar777",
+    icon: Github,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/mennaomar777",
+    icon: Linkedin,
+  },
+];
+
+const fieldClass =
+  "w-full rounded-xl border border-gray-200 bg-gray-50/70 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/15 dark:border-gray-700 dark:bg-[#111827] dark:text-white dark:placeholder:text-gray-500 dark:focus:border-violet-400";
+
 export default function Contact() {
+  const shouldReduceMotion = useReducedMotion();
+
   const {
     register,
     handleSubmit,
@@ -37,195 +73,327 @@ export default function Contact() {
           email: data.email,
           message: data.message,
         },
-        "pwp8OxICUWXGyIPwq"
+        "pwp8OxICUWXGyIPwq",
       );
-      toast.success("Message sent!");
+
+      toast.success("Message sent successfully!");
       reset();
     } catch (error) {
-      toast.error("Message didn't send, please try again");
-      console.log(error);
+      console.error("EmailJS submission failed:", error);
+      toast.error("Message couldn't be sent. Please try again.");
     }
   }
+
+  const reveal = {
+    hidden: {
+      opacity: 0,
+      y: shouldReduceMotion ? 0 : 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.5,
+      },
+    },
+  };
 
   return (
     <section
       id="contact"
-      className="py-24 md:py-32 px-6 md:px-16 bg-gray-50 dark:bg-[#0B1220]"
+      aria-labelledby="contact-heading"
+      className="bg-gray-50 px-5 py-20 dark:bg-[#0B1220] sm:px-8 md:py-24"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="text-center mb-20"
-      >
-        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100">
-          Get In Touch
-        </h2>
-        <div className="mt-4 h-1.5 w-32 md:w-48 mx-auto rounded-full bg-gradient-to-r from-[#8B5CF6] via-[#A78BFA] to-[#C4B5FD] dark:from-[#A78BFA] dark:via-[#8B5CF6] dark:to-[#6D28D9]" />
-      </motion.div>
-
-      <div className="grid md:grid-cols-2 gap-12 lg:gap-20 max-w-6xl mx-auto items-start">
+      <div className="mx-auto max-w-6xl">
+        {/* Section heading */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="bg-white dark:bg-[#0F172A] rounded-2xl p-8 shadow-lg"
+          variants={reveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mb-12 text-center md:mb-16"
         >
-          <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-            Send Me a Message
-          </h3>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">
+            Contact
+          </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-              >
-                Your Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                {...register("name", { required: "Name is required" })}
-                className={`w-full px-4 py-3 rounded-lg border ${
-                  errors.name
-                    ? "border-red-500"
-                    : "border-gray-300 dark:border-gray-700"
-                } bg-white dark:bg-[#1e293b] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition`}
-              />
-              {errors.name && (
-                <p className="text-red-500 mt-1 text-sm">
-                  {errors.name.message}
-                </p>
-              )}
-            </div>
+          <h2
+            id="contact-heading"
+            className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl md:text-5xl"
+          >
+            Let&apos;s Connect
+          </h2>
 
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-              >
-                Your Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                {...register("email", {
-                  required: "Email is required",
-                  pattern: { value: /^\S+@\S+$/i, message: "Invalid email" },
-                })}
-                className={`w-full px-4 py-3 rounded-lg border ${
-                  errors.email
-                    ? "border-red-500"
-                    : "border-gray-300 dark:border-gray-700"
-                } bg-white dark:bg-[#1e293b] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition`}
-              />
-              {errors.email && (
-                <p className="text-red-500 mt-1 text-sm">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                rows={5}
-                {...register("message", { required: "Message is required" })}
-                className={`w-full px-4 py-3 rounded-lg border ${
-                  errors.message
-                    ? "border-red-500"
-                    : "border-gray-300 dark:border-gray-700"
-                } bg-white dark:bg-[#1e293b] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition resize-none`}
-              />
-              {errors.message && (
-                <p className="text-red-500 mt-1 text-sm">
-                  {errors.message.message}
-                </p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full py-4 bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA] text-white font-semibold rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            >
-              {isSubmitting ? (
-                <Loader2 className="animate-spin" size={20} />
-              ) : (
-                <Send size={20} />
-              )}
-              Send Message
-            </button>
-          </form>
+          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-gray-600 dark:text-gray-400">
+            Have a project in mind or an opportunity to discuss? I&apos;d love
+            to hear from you.
+          </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="space-y-8"
-        >
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-              Let&apos;s Connect
-            </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-              I&apos;m always open to discussing new opportunities, interesting
-              projects, or just having a chat about web development. Feel free
-              to reach out!
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <Link
-              href="mailto:mennaomar764@gmail.com"
-              className="flex items-center gap-3 text-lg text-gray-700 dark:text-gray-300 hover:text-[#8B5CF6] dark:hover:text-[#A78BFA] hover:scale-105 hover:shadow-md transition-all duration-300 p-4 rounded-xl bg-gray-100 dark:bg-[#1e293b] hover:bg-purple-50 dark:hover:bg-[#111827]"
-            >
-              <HiOutlineMail size={24} />
-              mennaomar764@gmail.com
-            </Link>
-
-            <Link
-              href="tel:+201119051584"
-              className="flex items-center gap-3 text-lg text-gray-700 dark:text-gray-300 hover:text-[#8B5CF6] dark:hover:text-[#A78BFA] hover:scale-105 hover:shadow-md transition-all duration-300 p-4 rounded-xl bg-gray-100 dark:bg-[#1e293b] hover:bg-purple-50 dark:hover:bg-[#111827]"
-            >
-              <HiOutlinePhone size={24} />
-              +20 111 905 1584
-            </Link>
-
-            <div className="flex items-center gap-4 text-lg text-gray-700 dark:text-gray-300 p-4 rounded-xl bg-gray-100 dark:bg-[#1e293b] hover:bg-purple-50 dark:hover:bg-[#111827] hover:shadow-md transition-all duration-300">
-              <HiOutlineLocationMarker size={24} />
-              Cairo, Egypt
+        <div className="grid items-start gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+          {/* Contact form */}
+          <motion.div
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="rounded-2xl border border-gray-200/80 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-[#0F172A] sm:p-8 md:p-9"
+          >
+            <div className="mb-7">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
+                Send a Message
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
+                Fill out the form and I&apos;ll get back to you.
+              </p>
             </div>
-          </div>
 
-          <div className="flex gap-6 pt-6">
-            <Link
-              href="https://github.com/mennaomar777"
-              target="_blank"
-              className="text-gray-600 dark:text-gray-400 hover:text-[#8B5CF6] dark:hover:text-[#A78BFA] hover:scale-110 transition-all duration-300"
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              aria-busy={isSubmitting}
+              className="space-y-5"
             >
-              <FaGithub size={32} />
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/mennaomar777"
-              target="_blank"
-              className="text-gray-600 dark:text-gray-400 hover:text-[#8B5CF6] dark:hover:text-[#A78BFA] hover:scale-110 transition-all duration-300"
-            >
-              <FaLinkedin size={32} />
-            </Link>
-          </div>
-        </motion.div>
+              {/* Name */}
+              <div>
+                <label
+                  htmlFor="contact-name"
+                  className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Your Name
+                </label>
+
+                <input
+                  id="contact-name"
+                  type="text"
+                  autoComplete="name"
+                  placeholder="Enter your name"
+                  aria-invalid={!!errors.name}
+                  aria-describedby={
+                    errors.name ? "contact-name-error" : undefined
+                  }
+                  {...register("name", {
+                    required: "Please enter your name.",
+                    maxLength: {
+                      value: 100,
+                      message: "Name must be 100 characters or fewer.",
+                    },
+                  })}
+                  className={`${fieldClass} ${
+                    errors.name
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500/15"
+                      : ""
+                  }`}
+                />
+
+                {errors.name && (
+                  <p
+                    id="contact-name-error"
+                    role="alert"
+                    className="mt-2 text-sm text-red-600 dark:text-red-400"
+                  >
+                    {errors.name.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Email */}
+              <div>
+                <label
+                  htmlFor="contact-email"
+                  className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Email Address
+                </label>
+
+                <input
+                  id="contact-email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  aria-invalid={!!errors.email}
+                  aria-describedby={
+                    errors.email ? "contact-email-error" : undefined
+                  }
+                  {...register("email", {
+                    required: "Please enter your email address.",
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "Please enter a valid email address.",
+                    },
+                  })}
+                  className={`${fieldClass} ${
+                    errors.email
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500/15"
+                      : ""
+                  }`}
+                />
+
+                {errors.email && (
+                  <p
+                    id="contact-email-error"
+                    role="alert"
+                    className="mt-2 text-sm text-red-600 dark:text-red-400"
+                  >
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Message */}
+              <div>
+                <label
+                  htmlFor="contact-message"
+                  className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Your Message
+                </label>
+
+                <textarea
+                  id="contact-message"
+                  rows={5}
+                  placeholder="Tell me a little about your message..."
+                  aria-invalid={!!errors.message}
+                  aria-describedby={
+                    errors.message ? "contact-message-error" : undefined
+                  }
+                  {...register("message", {
+                    required: "Please enter your message.",
+                    maxLength: {
+                      value: 5000,
+                      message: "Message must be 5000 characters or fewer.",
+                    },
+                  })}
+                  className={`${fieldClass} min-h-36 resize-y ${
+                    errors.message
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500/15"
+                      : ""
+                  }`}
+                />
+
+                {errors.message && (
+                  <p
+                    id="contact-message-error"
+                    role="alert"
+                    className="mt-2 text-sm text-red-600 dark:text-red-400"
+                  >
+                    {errors.message.message}
+                  </p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-violet-600 px-5 py-3.5 font-semibold text-white transition-colors hover:bg-violet-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-violet-500 dark:hover:bg-violet-600 dark:focus-visible:ring-offset-[#0F172A]"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2
+                      size={18}
+                      className="animate-spin"
+                      aria-hidden="true"
+                    />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send size={18} aria-hidden="true" />
+                    Send Message
+                  </>
+                )}
+              </button>
+            </form>
+          </motion.div>
+
+          {/* Contact information */}
+          <motion.div
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="space-y-7 lg:pt-3"
+          >
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
+                Let&apos;s Talk
+              </h3>
+
+              <p className="mt-3 text-base leading-8 text-gray-600 dark:text-gray-400">
+                I&apos;m open to discussing frontend development opportunities,
+                interesting projects, and ideas around building better web
+                experiences. Feel free to reach out.
+              </p>
+            </div>
+
+            {/* Contact details */}
+            <div className="space-y-3">
+              {contactItems.map(({ label, value, href, icon: Icon }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  className="group flex min-w-0 items-center gap-4 rounded-xl border border-gray-200/80 bg-white p-4 transition-colors hover:border-violet-300 hover:bg-violet-50/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 dark:border-gray-800 dark:bg-[#0F172A] dark:hover:border-violet-500/50 dark:hover:bg-[#111827]"
+                >
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-700 dark:bg-violet-400/10 dark:text-violet-400">
+                    <Icon size={20} aria-hidden="true" />
+                  </span>
+
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-xs font-medium text-gray-500 dark:text-gray-400">
+                      {label}
+                    </span>
+                    <span className="mt-1 block break-all text-sm font-medium text-gray-800 group-hover:text-violet-700 dark:text-gray-200 dark:group-hover:text-violet-300 sm:text-base">
+                      {value}
+                    </span>
+                  </span>
+
+                  <ArrowUpRight
+                    size={17}
+                    aria-hidden="true"
+                    className="shrink-0 text-gray-400 transition-colors group-hover:text-violet-600 dark:group-hover:text-violet-400"
+                  />
+                </Link>
+              ))}
+            </div>
+
+            {/* Location */}
+            <div className="flex items-center gap-4 rounded-xl border border-gray-200/80 p-4 dark:border-gray-800">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-700 dark:bg-violet-400/10 dark:text-violet-400">
+                <MapPin size={20} aria-hidden="true" />
+              </span>
+
+              <div>
+                <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                  Location
+                </p>
+                <p className="mt-1 text-sm font-medium text-gray-800 dark:text-gray-200">
+                  Cairo, Egypt
+                </p>
+              </div>
+            </div>
+
+            {/* Social links */}
+            <div className="border-t border-gray-200 pt-6 dark:border-gray-800">
+              <p className="mb-4 text-sm font-medium text-gray-700 dark:text-gray-300">
+                Find me online
+              </p>
+
+              <div className="flex gap-3">
+                {socials.map(({ label, href, icon: Icon }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit my ${label} profile (opens in a new tab)`}
+                    className="flex size-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-600 transition-colors hover:border-violet-300 hover:bg-violet-50 hover:text-violet-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 dark:border-gray-800 dark:bg-[#0F172A] dark:text-gray-300 dark:hover:border-violet-500/50 dark:hover:bg-[#111827] dark:hover:text-violet-300"
+                  >
+                    <Icon size={20} aria-hidden="true" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

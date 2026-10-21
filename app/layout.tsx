@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { Poppins } from "next/font/google";
+import { MotionConfig } from "framer-motion";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,9 +22,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Menna Omar - Frontend Developer",
+  metadataBase: new URL("https://my-portfolio-delta-rose-14.vercel.app"),
+  title: "Menna Omar | Frontend Developer",
   description:
-    "Portfolio of Menna Omar, Frontend Developer specializing in React, Next.js, and Tailwind CSS",
+    "Menna Omar is a frontend developer building responsive web applications with React and Next.js, with professional experience in Vue.js.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Menna Omar | Frontend Developer",
+    description:
+      "Frontend developer building responsive web applications with React and Next.js, with professional experience in Vue.js.",
+    url: "/",
+    siteName: "Menna Omar Portfolio",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/my-img.JPG",
+        alt: "Menna Omar, frontend developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Menna Omar | Frontend Developer",
+    description:
+      "Frontend developer building responsive web applications with React and Next.js, with professional experience in Vue.js.",
+    images: ["/my-img.JPG"],
+  },
   icons: {
     icon: "/favicon.png",
   },
@@ -39,7 +66,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
-        {children}
+        <MotionConfig reducedMotion="user">{children}</MotionConfig>
         <Toaster
           position="top-center"
           reverseOrder={false}

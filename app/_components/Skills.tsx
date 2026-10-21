@@ -1,5 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
+
+import { motion, useReducedMotion } from "framer-motion";
 
 const skills = [
   {
@@ -8,19 +9,26 @@ const skills = [
   },
   {
     title: "Frameworks",
-    items: ["React", "Next.js (App Router)"],
+    items: ["React", "Next.js (App Router)", "Vue.js"],
   },
   {
     title: "Styling & UI",
-    items: ["Tailwind CSS", "Bootstrap", "Styled Components", "SCSS", "MUI"],
+    items: [
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Bootstrap",
+      "Styled Components",
+      "SCSS",
+      "MUI",
+    ],
   },
   {
     title: "State & Data Management",
     items: ["Redux Toolkit", "Context API", "React Query"],
   },
   {
-    title: "Forms",
-    items: ["React Hook Form", "Formik"],
+    title: "Forms & Validation",
+    items: ["React Hook Form", "Formik", "Zod"],
   },
   {
     title: "Tools & Workflow",
@@ -29,52 +37,82 @@ const skills = [
 ];
 
 export default function Skills() {
+  const prefersReducedMotion = useReducedMotion();
+
+  const initialAnimation = prefersReducedMotion
+    ? { opacity: 1 }
+    : { opacity: 0, y: 20 };
+
+  const visibleAnimation = { opacity: 1, y: 0 };
+
   return (
     <section
       id="skills"
-      className="py-20 px-6 md:px-16 bg-white dark:bg-[#0B1220]"
+      aria-labelledby="skills-heading"
+      className="bg-white px-5 py-20 dark:bg-[#0B1220] sm:px-8 lg:px-16"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="text-center mb-16"
-      >
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100">
-          Skills & Technologies
-        </h2>
-        <div className="mt-4 h-1.5 w-48 md:w-56 mx-auto rounded-full bg-gradient-to-r from-[#8B5CF6] via-[#A78BFA] to-[#C4B5FD]" />
-      </motion.div>
+      <div className="mx-auto max-w-6xl">
+        {/* Section heading */}
+        <motion.div
+          initial={initialAnimation}
+          whileInView={visibleAnimation}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: prefersReducedMotion ? 0 : 0.6 }}
+          className="mb-12 text-center sm:mb-16"
+        >
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">
+            What I work with
+          </p>
 
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-        {skills.map((skill, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.1 }}
-            className="bg-gray-50 dark:bg-[#0F172A] rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+          <h2
+            id="skills-heading"
+            className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl md:text-5xl"
           >
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 cursor-default">
-              {skill.title}
-            </h3>
+            Skills & Technologies
+          </h2>
 
-            <div className="flex flex-wrap gap-2">
-              {skill.items.map((item, idx) => (
-                <span
-                  key={idx}
-                  className="text-sm px-3 py-1 rounded-full 
-                  bg-[#8B5CF6]/10 text-[#8B5CF6] 
-                  dark:bg-[#A78BFA]/10 dark:text-[#A78BFA] hover:scale-105 transition-transform duration-200 cursor-default"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+          <div
+            aria-hidden="true"
+            className="mx-auto mt-5 h-1.5 w-28 rounded-full bg-linear-to-r from-[#8B5CF6] via-[#A78BFA] to-[#C4B5FD] sm:w-36"
+          />
+
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-gray-600 dark:text-gray-400 sm:text-base">
+            Technologies and tools I use to build responsive, accessible, and
+            maintainable web applications.
+          </p>
+        </motion.div>
+
+        {/* Skills grid */}
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {skills.map((skill, index) => (
+            <motion.article
+              key={skill.title}
+              initial={initialAnimation}
+              whileInView={visibleAnimation}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.5,
+                delay: prefersReducedMotion ? 0 : index * 0.08,
+              }}
+              className="group rounded-2xl border border-gray-200/80 bg-gray-50/80 p-5 transition-colors duration-200 hover:border-violet-300 dark:border-gray-800 dark:bg-[#0F172A] dark:hover:border-violet-500/50 sm:p-6"
+            >
+              <h3 className="mb-5 text-lg font-semibold text-gray-900 dark:text-white">
+                {skill.title}
+              </h3>
+
+              <ul className="flex flex-wrap gap-2.5">
+                {skill.items.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-lg border border-violet-200/70 bg-violet-500/5 px-3 py-2 text-sm font-medium text-violet-700 transition-colors duration-200 group-hover:border-violet-200 dark:border-violet-400/15 dark:bg-violet-400/5 dark:text-violet-300 dark:group-hover:border-violet-400/30"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   );

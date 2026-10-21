@@ -4,6 +4,35 @@
 html {
   scroll-behavior: smooth;
 }
+
+section[id]:not(#hero) {
+  scroll-margin-top: 6.5rem;
+}
+
+:focus-visible {
+  outline: 3px solid #8b5cf6;
+  outline-offset: 3px;
+}
+
+::selection {
+  color: #fff;
+  background: #7c3aed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 .container {
   max-width: 95%;
 }

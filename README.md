@@ -1,80 +1,97 @@
-# Menna Omar Portfolio
+# Menna Omar — Frontend Developer Portfolio
 
-Welcome to my personal portfolio website! This project showcases my work as a **Frontend Developer**, highlighting my skills, projects, and experience in web development.
+A personal portfolio showcasing my frontend development experience, technical skills, and projects.
 
-## 🌐 Live Demo
+**Live Demo:** [View Portfolio](https://my-portfolio-delta-rose-14.vercel.app/)
 
-You can check out the live version of my portfolio here: [ Live Demo](https://my-portfolio-delta-rose-14.vercel.app/)
+## Features
 
-## 💻 Tech Stack
+- Responsive design for desktop, tablet, and mobile
+- Light and dark themes
+- About, professional experience, projects, and skills sections
+- Links to project demos and GitHub repositories
+- Contact form powered by EmailJS
+- Smooth animations with reduced-motion support
+- Downloadable CV
 
-The project is built using modern web technologies:
+## Tech Stack
 
-- **Frontend:** React, Next.js, Tailwind CSS
+- **Frameworks:** Next.js, React
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
 - **Animations:** Framer Motion
 - **Icons:** Lucide React, React Icons
-- **Images:** Next.js Image Optimization
+- **Forms & Email:** React Hook Form, EmailJS
 
-## 📝 Features
+## Getting Started
 
-- **About Me Section:** Includes my bio, skills, and education with smooth scroll animations.
-- **Projects Section:** Showcase of my personal and professional projects with live links and GitHub repositories.
-- **Contact Form:** Integrated with EmailJS for easy messaging.
-- **Dark/Light Mode:** Seamless theme switch using Tailwind CSS.
-- **Responsive Design:** Fully responsive layout for mobile, tablet, and desktop.
+### Prerequisites
 
-## 🎨 Design
+- Node.js
+- npm
 
-- Modern, clean, and user-focused interface.
-- Animated transitions using Framer Motion for better UX.
-- Interactive skill cards and hover effects for a polished feel.
-
-## 📂 Folder Structure
-
-```bash
-portfolio/
-├── public/ # Static assets (images, icons)
-├── app/ # Next.js pages and components
-│ ├── _components/ # Reusable components (Hero, About, Projects,Skills,  Contact, Navbar, Footer)
-│ └── page.jsx # Main page
-├── styles/ # Tailwind CSS & global styles
-├── package.json # Project dependencies
-└── README.md # Project overview
-```
-
-## 🚀 Getting Started
-
-To run this project locally:
+### Installation
 
 1. Clone the repository:
 
-```bash
-git clone https://github.com/mennaomar777/my-portfolio
-```
+   ```bash
+   git clone https://github.com/mennaomar777/my-portfolio.git
+   ```
 
 2. Navigate to the project directory:
 
-```bash
-cd portfolio
-```
+   ```bash
+   cd my-portfolio
+   ```
 
 3. Install dependencies:
 
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Linting
+
+Run ESLint to check the code:
+
 ```bash
-npm install
+npm run lint
 ```
 
-4. Run the development server:
+### Production build
+
+Create and run a production build locally:
 
 ```bash
-npm run dev
+npm run build
+npm start
 ```
 
-5. Open http://localhost:3000 in your browser.
+## Project Structure
 
-## 📧 Contact
+```text
+menna-portfolio/
+├── app/
+│   ├── _components/    # Portfolio sections and shared UI
+│   ├── globals.css     # Global styles
+│   ├── layout.tsx      # Root layout and metadata
+│   └── page.tsx        # Home page
+├── public/
+│   ├── images/         # Project thumbnails
+│   └── Menna_Omar_Frontend_Developer_CV.pdf
+├── package.json
+└── README.md
+```
 
-- Email: [mennaomar764@gmail.com](mailto:mennaomar764@gmail.com)
-- LinkedIn: [Menna Omar](https://www.linkedin.com/in/mennaomar777/)
+## Contact
 
-Thank you for visiting my portfolio! I hope you enjoy exploring my work. 🚀
+- **Email:** [mennaomar764@gmail.com](mailto:mennaomar764@gmail.com)
+- **LinkedIn:** [linkedin.com/in/mennaomar777](https://www.linkedin.com/in/mennaomar777/)
