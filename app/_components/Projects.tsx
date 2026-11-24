@@ -29,7 +29,7 @@ const projects = [
     title: "VibeHub",
     description:
       "A social platform built with Next.js and TypeScript, featuring posts, user interactions, and dynamic UI updates.",
-    tech: ["Next.js", "TypeScript", "Redux Toolkit", "MUI"],
+    tech: ["Next.js", "TypeScript", "Redux Toolkit", "MUI", "Formik", "Yup"],
     image: "/images/image6.png",
     live: "https://vibe-hub-5iyc.vercel.app/",
     github: "https://github.com/mennaomar777/VibeHub",
